@@ -1,0 +1,12 @@
+{
+    "config": {
+        "camera":{
+            "help": "0:disable 1:enable",
+            "value": "1"
+        },
+        "lcd":{
+            "help": "0:disable 1:enable",
+            "value": "0"
+        }
+    }
+}
