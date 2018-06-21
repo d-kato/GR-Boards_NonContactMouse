@@ -26,6 +26,7 @@ static volatile int Vfield_Int_Cnt = 0;
 DisplayBase Display;
 DigitalOut  led1(LED1);
 USBMouse    mouse;
+static Thread mainTask(osPriorityNormal, 1024 * 16);
 
 static void IntCallbackFunc_Vfield(DisplayBase::int_type_t int_type) {
     if (Vfield_Int_Cnt > 0) {
@@ -81,7 +82,7 @@ static void Start_LCD_Display(void) {
 }
 #endif
 
-int main() {
+static void main_task(void) {
     cv::Mat prev_image;
     cv::Mat curr_image;
     std::vector<cv::Point2f> prev_pts;
@@ -157,4 +158,9 @@ int main() {
             led1 = 0;
         }
     }
+}
+
+int main(void) {
+    mainTask.start(callback(main_task));
+    mainTask.join();
 }
