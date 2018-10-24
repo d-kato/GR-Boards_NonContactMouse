@@ -37,7 +37,7 @@ static void IntCallbackFunc_Vfield(DisplayBase::int_type_t int_type) {
 static void wait_new_image(void) {
     Vfield_Int_Cnt = 1;
     while (Vfield_Int_Cnt > 0) {
-        Thread::wait(1);
+        ThisThread::sleep_for(1);
     }
 }
 
@@ -77,7 +77,7 @@ static void Start_LCD_Display(void) {
     );
     Display.Graphics_Start(DisplayBase::GRAPHICS_LAYER_0);
 
-    Thread::wait(50);
+    ThisThread::sleep_for(50);
     EasyAttach_LcdBacklight(true);
 }
 #endif
